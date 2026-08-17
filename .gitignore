@@ -11,3 +11,6 @@ Thumbs.db
 # 실습용 스크래치 작업 폴더 (원하면 포함해도 되지만 기본적으로는 제외 추천)
 cicd_supply_chain_demo/attacker_workdir/
 cicd_supply_chain_demo/demoadmin_workdir/
+
+# 제안서는 노션이 정본 - 깃헙에는 안 올림 (로컬엔 그대로 유지)
+cicd_supply_chain_demo/PROPOSAL.md

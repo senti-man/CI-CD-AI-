@@ -20,7 +20,6 @@
 |---|---|
 | [`ai_supply_chain_demo/`](ai_supply_chain_demo/) | 악성 패키지·MCP 서버·오염된 AI 모델 파일 시나리오 + 탐지 도구 |
 | [`cicd_supply_chain_demo/`](cicd_supply_chain_demo/) | CI/CD 파이프라인(Gitea Actions) 침해 PoC, 탐지 게이트, 포렌식 실습 자료 |
-| [`cicd_supply_chain_demo/PROPOSAL.md`](cicd_supply_chain_demo/PROPOSAL.md) | 팀 프로젝트 제안서 (진행 이력, 아키텍처, 일정, 역할 분담 포함) |
 | [`ONBOARDING.md`](ONBOARDING.md) | Docker/Git/터미널 기초 + 실전 에러 FAQ |
 | [`GITHUB_UPLOAD_GUIDE.md`](GITHUB_UPLOAD_GUIDE.md) | 이 저장소에 올리는 방법 자체를 정리한 가이드 |
 
@@ -30,7 +29,7 @@
 
 1. Docker/Git이 처음이시면 [`ONBOARDING.md`](ONBOARDING.md) 먼저 읽어주세요.
 2. 직접 손으로 재현해보고 싶으시면 [`cicd_supply_chain_demo/HANDS_ON_GUIDE.md`](cicd_supply_chain_demo/HANDS_ON_GUIDE.md)를 순서대로 따라가시면 됩니다.
-3. 전체 그림과 지금까지 진행 상황은 [`cicd_supply_chain_demo/PROPOSAL.md`](cicd_supply_chain_demo/PROPOSAL.md)를 봐주세요.
+3. 프로젝트 제안서(진행 이력, 아키텍처, 일정, 역할 분담)는 팀 노션 페이지에서 관리합니다.
 
 ---
 
