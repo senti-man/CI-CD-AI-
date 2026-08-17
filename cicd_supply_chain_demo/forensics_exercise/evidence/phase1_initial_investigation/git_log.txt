@@ -1,0 +1,8 @@
+# git log (base..malicious-merge), 커밋 3개
+# 참고: 서버(Gitea)가 만든 병합 커밋은 UTC로, 로컬 git 커밋은 시스템 로컬시간(KST, UTC+9)으로
+# 타임스탬프가 찍혀 있었습니다. 아래는 전부 KST(UTC+9)로 정규화한 값입니다.
+# 원본 raw 값이 필요하면 evidence/phase2_full_incident_record/git_log_full.txt 참고.
+
+e12ea9c | 2026-08-16 19:35:36 +0900 | demoadmin  | Initial commit: benign build workflow
+166e031 | 2026-08-16 19:37:16 +0900 | attacker01 | Optimize build cache setup for faster CI
+f429ad7 | 2026-08-16 19:37:38 +0900 | demoadmin  | Merge pull request 'Optimize build cache setup for faster CI' (#1) from attacker01/demo-project:feature/build-cache-optimization into main

@@ -1,0 +1,36 @@
+<!--
+  [Wazuh Agent 설정 스니펫]
+
+  이 내용을 "피해자 PC"(=이 데모가 실제로 실행되는 PC) 위의 Wazuh Agent
+  설정 파일(C:\Program Files (x86)\ossec-agent\ossec.conf, 최신 버전은
+  C:\Program Files (x86)\wazuh-agent\ossec.conf)의 <ossec_config> 태그
+  안에 그대로 추가하세요.
+
+  아래 경로의 "C:\Users\...\ai_supply_chain_demo" 부분은 실제 설치 경로에
+  맞게 바꿔야 합니다.
+-->
+
+<!-- 1) FIM(File Integrity Monitoring) - 시나리오 폴더의 파일 생성/변경을 실시간 감시 -->
+<syscheck>
+  <directories check_all="yes" realtime="yes">C:\Users\Admin\Downloads\ai_supply_chain_demo\fake_victim</directories>
+  <directories check_all="yes" realtime="yes">C:\Users\Admin\Downloads\ai_supply_chain_demo\malicious_package</directories>
+  <directories check_all="yes" realtime="yes">C:\Users\Admin\Downloads\ai_supply_chain_demo\mcp_attack</directories>
+  <directories check_all="yes" realtime="yes">C:\Users\Admin\Downloads\ai_supply_chain_demo\poisoned_model</directories>
+  <directories check_all="yes" realtime="yes">C:\Users\Admin\Downloads\ai_supply_chain_demo\artifacts</directories>
+</syscheck>
+
+<!-- 2) 공격자 C2 서버 로그(c2_log.jsonl)를 로그 소스로 등록 -->
+<!--    한 줄당 JSON 하나(JSON Lines) 형식이라 log_format을 json으로 지정하면
+     Wazuh가 자동으로 필드별로 분해해줍니다 (event, vector, recon.hostname 등). -->
+<localfile>
+  <log_format>json</log_format>
+  <location>C:\Users\Admin\Downloads\ai_supply_chain_demo\artifacts\c2_log.jsonl</location>
+</localfile>
+
+<!-- 3) (선택) Sysmon이 설치돼 있다면 프로세스 생성/네트워크 연결 이벤트도 같이 수집
+     -> "python -c import ai_lint_helper" 같은 커맨드라인, C2로의 아웃바운드 연결까지
+        Wazuh 룰로 잡을 수 있어서 탐지 커버리지가 훨씬 좋아집니다. -->
+<localfile>
+  <location>Microsoft-Windows-Sysmon/Operational</location>
+  <log_format>eventchannel</log_format>
+</localfile>

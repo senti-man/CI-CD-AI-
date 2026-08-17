@@ -1,0 +1,25 @@
+name: Supply Chain Guard
+
+# 이 저장소의 워크플로우 파일이 바뀔 때마다(PR이든 push든) 스스로를 검사합니다.
+# "공급망 공격 사고" 이후 유지관리자가 추가한 방어 컨트롤이라는 설정입니다.
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  scan-workflows:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install detector dependencies
+        # Ubuntu 24.04 이미지는 PEP 668(externally-managed-environment)로 시스템 전역
+        # pip install을 막습니다. 잡 컨테이너는 매번 새로 버려지는 일회용이라
+        # --break-system-packages를 써도 안전합니다.
+        run: pip install --quiet --break-system-packages pyyaml
+
+      - name: Scan changed workflow files for exfiltration patterns
+        run: python3 .security/detect_suspicious_workflow.py .gitea/workflows/*.yml

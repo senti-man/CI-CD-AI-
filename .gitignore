@@ -1,0 +1,13 @@
+# 파이썬 가상환경 / 캐시
+.venv/
+__pycache__/
+*.egg-info/
+*.pyc
+
+# OS 잡파일
+Thumbs.db
+.DS_Store
+
+# 실습용 스크래치 작업 폴더 (원하면 포함해도 되지만 기본적으로는 제외 추천)
+cicd_supply_chain_demo/attacker_workdir/
+cicd_supply_chain_demo/demoadmin_workdir/

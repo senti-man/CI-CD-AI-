@@ -1,0 +1,3 @@
+# 개발자가 "AI 코딩 도우미 세팅"을 하려고 이것저것 설치하는 상황을 재현한 requirements.txt
+# ai-lint-helper 는 이름이 그럴듯해서(타이포스쿼팅/오인 설치) 별생각 없이 같이 설치됨
+-e ../malicious_package

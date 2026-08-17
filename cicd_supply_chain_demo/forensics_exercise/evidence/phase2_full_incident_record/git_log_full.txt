@@ -1,0 +1,11 @@
+* 93b1b18 | 2026-08-16 20:12:50 +0900 | demoadmin | fix: drop unreliable paths filter on pull_request trigger (Gitea 1.27.2)
+* c1ec9d4 | 2026-08-16 20:10:06 +0900 | demoadmin | fix: use --break-system-packages for pip install on PEP 668 ubuntu images
+* e93341b | 2026-08-16 20:08:49 +0900 | demoadmin | security: remediate - remove malicious 'Setup build cache' step from build.yml
+* 9c97f88 | 2026-08-16 20:08:01 +0900 | demoadmin | security: add Supply Chain Guard to auto-scan workflow changes after incident
+* d14b821 | 2026-08-16 19:41:50 +0900 | demoadmin | chore: trigger 2
+* 0fcd20e | 2026-08-16 19:41:01 +0900 | demoadmin | chore: trigger workflow re-run for verification
+*   f429ad7 | 2026-08-16 10:37:38 +0000 | demoadmin | Merge pull request 'Optimize build cache setup for faster CI' (#1) from attacker01/demo-project:feature/build-cache-optimization into main
+|\  
+| * 166e031 | 2026-08-16 19:37:16 +0900 | attacker01 | Optimize build cache setup for faster CI
+|/  
+* e12ea9c | 2026-08-16 19:35:36 +0900 | demoadmin | Initial commit: benign build workflow

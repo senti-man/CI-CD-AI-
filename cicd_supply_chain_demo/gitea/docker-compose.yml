@@ -1,0 +1,37 @@
+services:
+  gitea:
+    image: gitea/gitea:latest
+    container_name: gitea
+    environment:
+      - GITEA__actions__ENABLED=true
+      - GITEA__server__ROOT_URL=http://localhost:3000/
+    # 127.0.0.1로만 바인딩 -> VM의 공인/사설 네트워크로는 노출되지 않음.
+    # 팀원들이 접속해야 한다면 VPN/SSH 터널로 접속하고, 절대 0.0.0.0이나
+    # 방화벽 인바운드 규칙으로 3000/2222를 외부에 열지 마세요.
+    ports:
+      - "127.0.0.1:3000:3000"
+      - "127.0.0.1:2222:22"
+    volumes:
+      - gitea-data:/data
+    networks:
+      - cicd_demo_net
+    restart: unless-stopped
+
+  attacker-server:
+    build: ../attacker
+    container_name: attacker-server
+    # 이 포트도 127.0.0.1로만 바인딩. 컨테이너 안에서는 0.0.0.0:8000으로 열려있어서
+    # 같은 cicd_demo_net에 붙은 Actions 러너 잡 컨테이너는 "attacker-server:8000"으로
+    # 접근할 수 있지만, VM 바깥에서는 접근 불가능합니다.
+    ports:
+      - "127.0.0.1:8000:8000"
+    networks:
+      - cicd_demo_net
+    restart: unless-stopped
+
+networks:
+  cicd_demo_net:
+    name: cicd_demo_net
+
+volumes:
+  gitea-data:

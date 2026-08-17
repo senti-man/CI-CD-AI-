@@ -1,0 +1,25 @@
+# 정상 워크플로우인데 curl을 쓰는 케이스 (탐지 스크립트 테스트용).
+# 시크릿과는 전혀 무관하게 공개 API에서 버전 정보만 받아오는 흔한 패턴이다.
+# 탐지기가 이런 정상 케이스까지 오탐하면 안 된다.
+name: Build and Check Latest Version
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check latest upstream release (public API, no secrets)
+        run: |
+          curl -s https://api.github.com/repos/some-org/some-tool/releases/latest \
+            | grep tag_name
+
+      - name: Run tests (dummy)
+        run: |
+          echo "테스트 실행 중..."
+          echo "모든 테스트 통과!"

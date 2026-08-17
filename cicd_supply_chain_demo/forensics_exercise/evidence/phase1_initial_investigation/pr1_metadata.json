@@ -1,0 +1,19 @@
+{
+  "number": 1,
+  "title": "Optimize build cache setup for faster CI",
+  "body": "Adds a build cache setup step to speed up repeated builds. Should be a safe, non-functional change.",
+  "state": "closed",
+  "merged": true,
+  "merged_at": "2026-08-16T10:37:38Z",
+  "merged_by": "demoadmin",
+  "created_at": "2026-08-16T10:37:30Z",
+  "author": "attacker01",
+  "head_branch": "feature/build-cache-optimization",
+  "head_sha": "166e0313705fc38c1a230cff96e093d9f6c8759a",
+  "head_repo_owner": "attacker01",
+  "base_branch": "main",
+  "base_repo_owner": "demoadmin",
+  "additions": 8,
+  "deletions": 0,
+  "changed_files": 1
+}
